@@ -26,16 +26,31 @@ exports.initialize = function(pathsObj){
 // modularize your code. Keep it clean!
 
 exports.readListOfUrls = function(){
+  // read sites file
 };
 
 exports.isUrlInList = function(){
+  // check if site is in file
 };
 
 exports.addUrlToList = function(){
+  // add site to file
 };
 
-exports.isURLArchived = function(){
+exports.isUrlArchived = function(url, callback) {
+  fs.exists(path.join(this.paths.archivedSites, url), callback);
+};
+
+exports.getArchivedSite = function(url, callback) {
+  var that = this;
+  this.isUrlArchived(url, function(exists) {
+    if (exists) {
+      console.log(path.join(that.paths.archivedSites, url));
+      callback(path.join(that.paths.archivedSites, url));
+    } else callback(null);
+  });
 };
 
 exports.downloadUrls = function(){
+  // save to archives
 };
